@@ -35,21 +35,18 @@ def countdown(minuts):
         mins, secs = divmod(minuts, 60)
         timer = '{:02d}:{:02d}'.format(mins, secs)
         window['-UPDATE-'].update(timer)
-        print(timer)
         window.refresh()
         time.sleep(1)
         minuts -= 1
-        print(event)
     window['-UPDATE-'].update("TimeOut")
     window.refresh()
     playsound('./assets/soundEffect.wav')
     sg.SystemTray.notify('Time is Up', 'Timeout Was ' + event)
-    print('Fire in the hole!!')
+    print('Time Finished')
 
 
 while runWindow:
     event, values = window()
-    print(event)
     if event == sg.WIN_CLOSED:
         window.close()
         break
@@ -57,4 +54,4 @@ while runWindow:
         window['10'].update(visible=toggleBtn)
         window['15'].update(visible=toggleBtn)
         window['45'].update(visible=toggleBtn)
-        countdown(int(event))
+        countdown(int(event) * 60)
